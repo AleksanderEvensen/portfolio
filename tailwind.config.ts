@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { fontFamily } from "tailwindcss/defaultTheme";
 import plugin from "tailwindcss/plugin";
 // @ts-expect-error No types available
 import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
@@ -20,6 +21,10 @@ export default {
     content: ["./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}"],
     theme: {
         extend: {
+            fontFamily: {
+                "space-mono": ["Space Mono", ...fontFamily.sans],
+                "dm-sans": ["DM Sans", ...fontFamily.mono],
+            },
             animation: {
                 moveUp: "moveUp 1.4s ease forwards",
                 appear: "appear 1s 1s forwards",
