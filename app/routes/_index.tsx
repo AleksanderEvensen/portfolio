@@ -1,6 +1,8 @@
 import type { MetaFunction } from "@vercel/remix";
 import { ArrowDown, Github, Linkedin } from "lucide-react";
 import Blob from "~/components/Blob";
+import { Button, buttonVariants } from "~/components/ui/button";
+import { cn } from "~/lib/utils";
 
 export const meta: MetaFunction = () => {
     return [
