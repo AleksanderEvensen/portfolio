@@ -48,7 +48,7 @@ function map(
 
 export default function Blob({ className }: { className?: string }) {
     const [points, setPoints] = useState<[number, number][]>([]);
-
+    const [hue, setHue] = useState(0);
     useEffect(() => {
         const _points = createPoints();
 
@@ -68,14 +68,16 @@ export default function Blob({ className }: { className?: string }) {
         }
 
         setPoints(_points.map((p) => [p.x, p.y]));
+        setHue(Math.floor(Math.random() * 360));
     }, []);
 
     return (
         <svg
             viewBox="0 0 200 200"
             style={{
-                "--start-color": `hsl(${150 % 360}, 100%, 75%)`,
-                "--stop-color": `hsl(${(150 + 60) % 360}, 100%, 75%)`,
+                // @ts-expect-error No literal string type "why this error idk"
+                "--start-color": `hsl(${hue % 360}, 100%, 75%)`,
+                "--stop-color": `hsl(${(hue + 60) % 360}, 100%, 75%)`,
                 filter: "blur(42px)",
             }}
             className={className}
