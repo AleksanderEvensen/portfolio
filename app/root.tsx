@@ -1,12 +1,18 @@
 import {
+    json,
     Links,
     Meta,
     Outlet,
     Scripts,
     ScrollRestoration,
+    useLoaderData,
 } from "@remix-run/react";
 import "./tailwind.css";
-import { LinksFunction } from "@vercel/remix";
+import { LinksFunction, LoaderFunctionArgs } from "@vercel/remix";
+import Navbar from "./components/Navbar";
+import { cn } from "./lib/utils";
+import i18next from "./i18next.server";
+import { useTranslation } from "react-i18next";
 
 export const links: LinksFunction = () => [
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -31,9 +37,28 @@ export const links: LinksFunction = () => [
     },
 ];
 
+export async function loader({ request }: LoaderFunctionArgs) {
+    const locale = await i18next.getLocale(request);
+    return json({ locale });
+}
+
+export const handle = {
+    i18n: "common",
+};
+
 export function Layout({ children }: { children: React.ReactNode }) {
+    const { locale } = useLoaderData<typeof loader>();
+
+    const { i18n } = useTranslation();
+
+    useTranslation(locale);
+
     return (
-        <html lang="en" className="dark scroll-smooth">
+        <html
+            lang={locale}
+            dir={i18n.dir()}
+            className={cn("dark", "scroll-smooth")}
+        >
             <head>
                 <meta charSet="utf-8" />
                 <meta
@@ -44,6 +69,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <Links />
             </head>
             <body>
+                <Navbar />
                 {children}
                 <ScrollRestoration />
                 <Scripts />

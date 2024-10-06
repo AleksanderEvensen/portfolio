@@ -1,8 +1,6 @@
 import type { MetaFunction } from "@vercel/remix";
 import { ArrowDown, Github, Linkedin } from "lucide-react";
 import Blob from "~/components/Blob";
-import { Button, buttonVariants } from "~/components/ui/button";
-import { cn } from "~/lib/utils";
 
 export const meta: MetaFunction = () => {
     return [
@@ -36,7 +34,7 @@ export default function Index() {
                         </a>
                         <a
                             className="bg-[#0A66C2] hover:brightness-150 hover:scale-110 transition-all p-2 rounded-xl border-white/20 border-2"
-                            href="https://www.linkedin.com/feed/"
+                            href="https://www.linkedin.com/in/aleksander-evensen-70bb10303/"
                             target="_blank"
                             rel="noreferrer"
                         >
@@ -54,7 +52,10 @@ export default function Index() {
             </div>
 
             {/* About Me Section */}
-            <div id="aboutMe" className="w-[100vw] grid place-items-center">
+            <div
+                id="aboutMe"
+                className="w-[100vw] grid place-items-center scroll-mt-20"
+            >
                 <div className="w-[90vw] h-[calc(100vh)] bg-white/10">
                     <h1 className="font-space-mono text-3xl">
                         {"Hi, I'm Aleksander"}
