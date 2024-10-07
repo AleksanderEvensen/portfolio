@@ -1,6 +1,5 @@
 import type { MetaFunction } from "@vercel/remix";
 import { ArrowDown, Github, Linkedin } from "lucide-react";
-import { useTranslation } from "react-i18next";
 import Blob from "~/components/Blob";
 
 export const meta: MetaFunction = () => {
@@ -15,8 +14,6 @@ export const handle = {
 };
 
 export default function Index() {
-    const { t } = useTranslation();
-
     return (
         <>
             {/* Main Section */}
@@ -28,7 +25,7 @@ export default function Index() {
                         Aleksander Evensen
                     </h1>
                     <h3 className="text-center text-xl text-red-500 font-space-mono">
-                        {t("main.profession")}
+                        Software Developer
                     </h3>
                     <div className="flex gap-4 m-5">
                         <a
@@ -53,7 +50,7 @@ export default function Index() {
                         href="#aboutMe"
                         className="rounded-xl bg-white text-black flex gap-2 py-2 px-4 hover:bg-white/50 transition-colors"
                     >
-                        <ArrowDown /> {t("main.aboutMe")}
+                        <ArrowDown /> About Me
                     </a>
                 </div>
             </div>
@@ -63,15 +60,27 @@ export default function Index() {
                 id="aboutMe"
                 className="w-full grid place-items-center scroll-mt-20"
             >
-                <div className="grid grid-cols-2">
-                    <div>
-                        <h2>About Me</h2>
+                <div className="grid grid-cols-2 p-20">
+                    <div className="">
+                        <h2 className="text-2xl mb-2">About Me</h2>
                         <p>
                             Hi, my name is Aleksander. I am a software developer
-                            from Moss, Norway.
+                            from Moss, Norway. I have since a young age been
+                            very interested in technology and computers. I
+                            started programming when I was 11 and have since
+                            then been learning new technologies and programming
+                            languages. I am currently studying Computer Science
+                            at NTNU in Trondheim, Norway.
                         </p>
                     </div>
                     <div></div>
+                </div>
+                <div className="grid grid-cols-2">
+                    <div></div>
+                    <div>
+                        <h2>My skills</h2>
+                        <p></p>
+                    </div>
                 </div>
             </div>
         </>

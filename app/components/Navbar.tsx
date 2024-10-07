@@ -1,22 +1,9 @@
 import { Link, NavLink } from "@remix-run/react";
 import { RemixNavLinkProps } from "@remix-run/react/dist/components";
-import { BookCopy, Globe, Home } from "lucide-react";
+import { BookCopy, Home } from "lucide-react";
 import { cn } from "~/lib/utils";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import { Button } from "./ui/button";
-import * as Flags from "~/components/icons/Flags";
-import { useTranslation } from "react-i18next";
 
 export default function Navbar() {
-    const { t, i18n } = useTranslation();
-
-    // const currentLanguage = i18n.language == "no" ? "no" : "en";
-
     return (
         <header className="fixed top-0 z-50 w-full border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 grid place-items-center">
             <div className="container flex h-20 max-w-screen-2xl items-center justify-between px-20">
@@ -36,53 +23,15 @@ export default function Navbar() {
                         className="[&.active-url]:underline underline-offset-8"
                     >
                         <Home />
-                        <span className="text-lg font-dm-sans">
-                            {t("navbar.home")}
-                        </span>
+                        <span className="text-lg font-dm-sans">Home</span>
                     </NavElement>
                     <NavElement
                         to={"/projects"}
                         className="[&.active-url]:underline underline-offset-8"
                     >
                         <BookCopy />
-                        <span className="text-lg font-dm-sans">
-                            {t("navbar.projects")}
-                        </span>
+                        <span className="text-lg font-dm-sans">Projects</span>
                     </NavElement>
-                    <DropdownMenu>
-                        <DropdownMenuTrigger>
-                            <Button
-                                variant={"link"}
-                                className="hover:text-red-500 transition-colors relative w-fit"
-                            >
-                                <Globe />
-                                {/* {currentLanguage == "en" && (
-                                    <Flags.AmericanFlag className="aspect-[4/3] h-3 absolute bottom-2 right-2" />
-                                )}
-                                {currentLanguage == "no" && (
-                                    <Flags.NorwegianFlag className="aspect-[4/3] h-3 absolute bottom-2 right-2" />
-                                )} */}
-                            </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent>
-                            <DropdownMenuItem
-                                onClick={() => {
-                                    i18n.changeLanguage("en");
-                                }}
-                            >
-                                <Flags.AmericanFlag className="aspect-[4/3] h-5 mr-2" />
-                                English
-                            </DropdownMenuItem>
-                            <DropdownMenuItem
-                                onClick={() => {
-                                    i18n.changeLanguage("no");
-                                }}
-                            >
-                                <Flags.NorwegianFlag className="aspect-[4/3] h-5 mr-2" />
-                                Norwegian
-                            </DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
                 </nav>
             </div>
         </header>
