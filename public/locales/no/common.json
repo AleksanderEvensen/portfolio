@@ -2,5 +2,9 @@
     "navbar": {
         "home": "Hjem",
         "projects": "Prosjekter"
+    },
+    "main": {
+        "profession": "Programvareutvikler",
+        "aboutMe": "Om meg"
     }
 }

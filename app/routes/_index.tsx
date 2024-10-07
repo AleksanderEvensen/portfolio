@@ -1,5 +1,6 @@
 import type { MetaFunction } from "@vercel/remix";
 import { ArrowDown, Github, Linkedin } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import Blob from "~/components/Blob";
 
 export const meta: MetaFunction = () => {
@@ -9,11 +10,17 @@ export const meta: MetaFunction = () => {
     ];
 };
 
+export const handle = {
+    i18n: "common",
+};
+
 export default function Index() {
+    const { t } = useTranslation();
+
     return (
         <>
             {/* Main Section */}
-            <div className="w-[100vw] h-[100vh] grid place-items-center overflow-hidden">
+            <div className="w-full h-[100vh] grid place-items-center overflow-hidden">
                 <div className="w-[50%] h-[50%] relative flex flex-col place-items-center">
                     <Blob className="z-[-1] absolute top-[-10%] left-[50%] translate-x-[-50%] w-[70%] h-[70%] min-w-[500px]" />
                     <img src="/me.jpg" className=" rounded-3xl w-48" alt="Me" />
@@ -21,7 +28,7 @@ export default function Index() {
                         Aleksander Evensen
                     </h1>
                     <h3 className="text-center text-xl text-red-500 font-space-mono">
-                        Software Developer
+                        {t("main.profession")}
                     </h3>
                     <div className="flex gap-4 m-5">
                         <a
@@ -46,7 +53,7 @@ export default function Index() {
                         href="#aboutMe"
                         className="rounded-xl bg-white text-black flex gap-2 py-2 px-4 hover:bg-white/50 transition-colors"
                     >
-                        <ArrowDown /> About Me
+                        <ArrowDown /> {t("main.aboutMe")}
                     </a>
                 </div>
             </div>
@@ -54,12 +61,17 @@ export default function Index() {
             {/* About Me Section */}
             <div
                 id="aboutMe"
-                className="w-[100vw] grid place-items-center scroll-mt-20"
+                className="w-full grid place-items-center scroll-mt-20"
             >
-                <div className="w-[90vw] h-[calc(100vh)] bg-white/10">
-                    <h1 className="font-space-mono text-3xl">
-                        {"Hi, I'm Aleksander"}
-                    </h1>
+                <div className="grid grid-cols-2">
+                    <div>
+                        <h2>About Me</h2>
+                        <p>
+                            Hi, my name is Aleksander. I am a software developer
+                            from Moss, Norway.
+                        </p>
+                    </div>
+                    <div></div>
                 </div>
             </div>
         </>

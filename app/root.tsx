@@ -48,10 +48,7 @@ export const handle = {
 
 export function Layout({ children }: { children: React.ReactNode }) {
     const { locale } = useLoaderData<typeof loader>();
-
     const { i18n } = useTranslation();
-
-    useTranslation(locale);
 
     return (
         <html

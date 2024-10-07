@@ -2,5 +2,9 @@
     "navbar": {
         "home": "Home",
         "projects": "Projects"
+    },
+    "main": {
+        "profession": "Software Developer",
+        "aboutMe": "About Me"
     }
 }
