@@ -36,7 +36,7 @@ import {
     SiTypescript,
     SiVuedotjs,
     SiZig,
-} from "@icons-pack/react-simple-icons";
+} from "~/components/icons/SimpleIcons";
 
 import React, { createRef, useCallback } from "react";
 import Blob from "~/components/Blob";
@@ -119,7 +119,7 @@ export default function Index() {
                             <h2 className="text-2xl font-semibold mb-2">
                                 About Me
                             </h2>
-                            <p>
+                            <p> {`
                                 Hello, I'm Aleksander, a software developer from
                                 Moss, Norway. I've been passionate about
                                 technology and computers from an early age,
@@ -136,6 +136,7 @@ export default function Index() {
                                 currently working towards a bachelor's degree in
                                 Computer Engineering at NTNU in Trondheim,
                                 Norway.
+                            `}
                             </p>
                         </div>
                         <div className="grid grid-cols-3 grid-rows-2 gap-2 aspect-square">
@@ -169,74 +170,154 @@ export default function Index() {
                                     title="Web Development"
                                 >
                                     <Tech
-                                        icon={<SiHtml5 color="#E34F26" />}
+                                        icon={
+                                            <SiHtml5
+                                                stroke="none"
+                                                fill="#E34F26"
+                                            />
+                                        }
                                         name="HTML"
                                     />
                                     <Tech
-                                        icon={<SiJavascript color="#F7DF1E" />}
+                                        icon={
+                                            <SiJavascript
+                                                stroke="none"
+                                                fill="#F7DF1E"
+                                            />
+                                        }
                                         name="Tailwind CSS"
                                     />
                                     <Tech
-                                        icon={<SiCss3 color="#1572B6" />}
+                                        icon={
+                                            <SiCss3
+                                                stroke="none"
+                                                fill="#1572B6"
+                                            />
+                                        }
                                         name="CSS"
                                     />
                                     <Tech
-                                        icon={<SiSass color="#CC6699" />}
+                                        icon={
+                                            <SiSass
+                                                stroke="none"
+                                                fill="#CC6699"
+                                            />
+                                        }
                                         name="Sass"
                                     />
                                     <Tech
-                                        icon={<SiTailwindcss color="#06B6D4" />}
+                                        icon={
+                                            <SiTailwindcss
+                                                stroke="none"
+                                                fill="#06B6D4"
+                                            />
+                                        }
                                         name="Tailwind CSS"
                                     />
                                 </TechCard>
 
                                 <TechCard icon={<Code />} title="Programming">
                                     <Tech
-                                        icon={<SiTypescript color="#3178C6" />}
+                                        icon={
+                                            <SiTypescript
+                                                stroke="none"
+                                                fill="#3178C6"
+                                            />
+                                        }
                                         name="TypeScript"
                                     />
                                     <Tech
-                                        icon={<SiRust color="#f04900" />}
+                                        icon={
+                                            <SiRust
+                                                stroke="none"
+                                                fill="#f04900"
+                                            />
+                                        }
                                         name="Rust"
                                     />
                                     <Tech
-                                        icon={<SiZig color="#F7A41D" />}
+                                        icon={
+                                            <SiZig
+                                                stroke="none"
+                                                fill="#F7A41D"
+                                            />
+                                        }
                                         name="Zig"
                                     />
                                     {/* TODO: Find icon with correct colors */}
                                     <Tech
-                                        icon={<SiPython color="#3776AB" />}
+                                        icon={
+                                            <SiPython
+                                                stroke="none"
+                                                fill="#3776AB"
+                                            />
+                                        }
                                         name="Python"
                                     />
 
                                     <Tech
-                                        icon={<SiGo color="#00ADD8" />}
+                                        icon={
+                                            <SiGo
+                                                stroke="none"
+                                                fill="#00ADD8"
+                                            />
+                                        }
                                         name="Go"
                                     />
                                     <Tech
-                                        icon={<SiDotnet color="#512BD4" />}
+                                        icon={
+                                            <SiDotnet
+                                                stroke="none"
+                                                fill="#512BD4"
+                                            />
+                                        }
                                         name=".NET (C#)"
                                     />
                                     <Tech
-                                        icon={<SiLua color="#2C2D72" />}
+                                        icon={
+                                            <SiLua
+                                                stroke="none"
+                                                fill="#2C2D72"
+                                            />
+                                        }
                                         name="Lua"
                                     />
                                 </TechCard>
                                 <TechCard icon={<Library />} title="Frameworks">
                                     <Tech
-                                        icon={<SiReact color="#61DAFB" />}
+                                        icon={
+                                            <SiReact
+                                                stroke="none"
+                                                fill="#61DAFB"
+                                            />
+                                        }
                                         name="React"
                                     />
                                     <Tech
-                                        icon={<SiVuedotjs color="#4FC08D" />}
+                                        icon={
+                                            <SiVuedotjs
+                                                stroke="none"
+                                                fill="#4FC08D"
+                                            />
+                                        }
                                         name="Vue"
                                     />
                                     <Tech
-                                        icon={<SiSvelte color="#FF3E00" />}
+                                        icon={
+                                            <SiSvelte
+                                                stroke="none"
+                                                fill="#FF3E00"
+                                            />
+                                        }
                                         name="Svelte"
                                     />
                                     <Tech
-                                        icon={<SiNextdotjs color="#FFFFFF" />}
+                                        icon={
+                                            <SiNextdotjs
+                                                stroke="none"
+                                                fill="#FFFFFF"
+                                            />
+                                        }
                                         name="Next.js"
                                     />
                                     {/* TODO: Replace this icon */}
@@ -245,7 +326,12 @@ export default function Index() {
                                         name="Vite"
                                     /> */}
                                     <Tech
-                                        icon={<SiRemix color="#FFFFFF" />}
+                                        icon={
+                                            <SiRemix
+                                                stroke="none"
+                                                fill="#FFFFFF"
+                                            />
+                                        }
                                         name="Remix"
                                     />
                                 </TechCard>
@@ -257,34 +343,60 @@ export default function Index() {
                                 >
                                     <div className="flex flex-auto gap-6 flex-wrap">
                                         <Tech
-                                            icon={<SiMysql color="#4479A1" />}
+                                            icon={
+                                                <SiMysql
+                                                    stroke="none"
+                                                    fill="#4479A1"
+                                                />
+                                            }
                                             name="MySQL"
                                         />
                                         <Tech
                                             icon={
-                                                <SiPostgresql color="#4169E1" />
+                                                <SiPostgresql
+                                                    stroke="none"
+                                                    fill="#4169E1"
+                                                />
                                             }
                                             name="PostgreSQL"
                                         />
                                         <Tech
                                             icon={
-                                                <SiSurrealdb color="#FF00A0" />
+                                                <SiSurrealdb
+                                                    stroke="none"
+                                                    fill="#FF00A0"
+                                                />
                                             }
                                             name="SurrealDB"
                                         />
                                         <Tech
-                                            icon={<SiMongodb color="#47A248" />}
+                                            icon={
+                                                <SiMongodb
+                                                    stroke="none"
+                                                    fill="#47A248"
+                                                />
+                                            }
                                             name="MongoDB"
                                         />
                                     </div>
                                     <Separator />
                                     <div className="flex flex-auto gap-6 flex-wrap">
                                         <Tech
-                                            icon={<SiDrizzle color="#C5F74F" />}
+                                            icon={
+                                                <SiDrizzle
+                                                    stroke="none"
+                                                    fill="#C5F74F"
+                                                />
+                                            }
                                             name="Drizzle"
                                         />
                                         <Tech
-                                            icon={<SiPrisma color="#2D3748" />}
+                                            icon={
+                                                <SiPrisma
+                                                    stroke="none"
+                                                    fill="#2D3748"
+                                                />
+                                            }
                                             name="Prisma"
                                         />
                                     </div>
@@ -295,15 +407,30 @@ export default function Index() {
                                     title="Mobile Development"
                                 >
                                     <Tech
-                                        icon={<SiReact color="#61DAFB" />}
+                                        icon={
+                                            <SiReact
+                                                stroke="none"
+                                                fill="#61DAFB"
+                                            />
+                                        }
                                         name="React Native"
                                     />
                                     <Tech
-                                        icon={<SiFlutter color="#02569B" />}
+                                        icon={
+                                            <SiFlutter
+                                                stroke="none"
+                                                fill="#02569B"
+                                            />
+                                        }
                                         name="Flutter"
                                     />
                                     <Tech
-                                        icon={<SiAndroid color="#34A853" />}
+                                        icon={
+                                            <SiAndroid
+                                                stroke="none"
+                                                fill="#34A853"
+                                            />
+                                        }
                                         name="Android"
                                     />
                                 </TechCard>
