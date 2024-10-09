@@ -88,7 +88,7 @@ export default function Index() {
                             target="_blank"
                             rel="noreferrer"
                         >
-                            <Github />
+                            <Github stroke="none" fill="currentColor" />
                         </a>
                         <a
                             className="bg-[#0A66C2] hover:brightness-150 hover:scale-110 transition-all p-2 rounded-xl border-white/20 border-2"
@@ -96,7 +96,7 @@ export default function Index() {
                             target="_blank"
                             rel="noreferrer"
                         >
-                            <Linkedin />
+                            <Linkedin stroke="none" fill="currentColor" />
                         </a>
                     </div>
 
@@ -119,7 +119,9 @@ export default function Index() {
                             <h2 className="text-2xl font-semibold mb-2">
                                 About Me
                             </h2>
-                            <p> {`
+                            <p>
+                                {" "}
+                                {`
                                 Hello, I'm Aleksander, a software developer from
                                 Moss, Norway. I've been passionate about
                                 technology and computers from an early age,
