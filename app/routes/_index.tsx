@@ -20,7 +20,11 @@ export default function Index() {
             <div className="w-full h-[100vh] grid place-items-center overflow-hidden">
                 <div className="w-[50%] h-[50%] relative flex flex-col place-items-center">
                     <Blob className="z-[-1] absolute top-[-10%] left-[50%] translate-x-[-50%] w-[70%] h-[70%] min-w-[500px]" />
-                    <img src="/me.jpg" className=" rounded-3xl w-48" alt="Me" />
+                    <img
+                        src="/images/me.jpg"
+                        className=" rounded-3xl w-48"
+                        alt="Me"
+                    />
                     <h1 className="text-center text-3xl font-space-mono mt-5">
                         Aleksander Evensen
                     </h1>
@@ -38,7 +42,7 @@ export default function Index() {
                         </a>
                         <a
                             className="bg-[#0A66C2] hover:brightness-150 hover:scale-110 transition-all p-2 rounded-xl border-white/20 border-2"
-                            href="https://www.linkedin.com/in/aleksander-evensen-70bb10303/"
+                            href="https://linkedin.com/in/aleksander-evensen"
                             target="_blank"
                             rel="noreferrer"
                         >
@@ -60,7 +64,7 @@ export default function Index() {
                 id="aboutMe"
                 className="w-full grid place-items-center scroll-mt-20"
             >
-                <div className="grid grid-cols-2 p-20">
+                <div className="grid grid-cols-2 gap-6 p-20">
                     <div className="">
                         <h2 className="text-2xl mb-2">About Me</h2>
                         <p>
@@ -73,7 +77,13 @@ export default function Index() {
                             at NTNU in Trondheim, Norway.
                         </p>
                     </div>
-                    <div></div>
+                    <div className="relative">
+                        <img
+                            className="rounded-xl aspect-square object-cover"
+                            src="/images/aerial_photo_moss.jpg"
+                            alt="moss"
+                        />
+                    </div>
                 </div>
                 <div className="grid grid-cols-2">
                     <div></div>
