@@ -187,7 +187,7 @@ export default function Index() {
                                                 fill="#F7DF1E"
                                             />
                                         }
-                                        name="Tailwind CSS"
+                                        name="JavaScript"
                                     />
                                     <Tech
                                         icon={
