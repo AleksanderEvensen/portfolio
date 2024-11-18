@@ -1,6 +1,7 @@
 import type { MetaFunction } from "@vercel/remix";
 import {
     ArrowDown,
+    ArrowRight,
     Code,
     Database,
     Globe,
@@ -43,6 +44,7 @@ import Blob from "~/components/Blob";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { Separator } from "~/components/ui/separator";
+import { Link } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
     return [
@@ -99,13 +101,23 @@ export default function Index() {
                             <Linkedin stroke="none" fill="currentColor" />
                         </a>
                     </div>
-
-                    <Button
-                        onClick={gotoAbout}
-                        className="rounded-xl flex gap-2"
-                    >
-                        <ArrowDown /> About Me
-                    </Button>
+                    <div className="flex flex-row gap-3">
+                        <Button
+                            onClick={gotoAbout}
+                            className="rounded-xl flex gap-2"
+                        >
+                            <ArrowDown /> About Me
+                        </Button>
+                        <Button
+                            className="rounded-xl flex gap-2"
+                            variant={"secondary"}
+                            asChild
+                        >
+                            <Link to="/projects">
+                                My Projects <ArrowRight />
+                            </Link>
+                        </Button>
+                    </div>
                 </div>
             </div>
 
