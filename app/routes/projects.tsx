@@ -53,6 +53,21 @@ const projects: Project[] = [
         link: "https://redmnorge.no/",
     },
 ];
+const schoolProjects: Project[] = [
+    {
+        title: "Lego Mindstorm EV3 Robots",
+        description:
+            "The first year at NTNU we made Lego robots with the Lego Mindstorm EV3 kit. The project was a collaboration between me and 4 other students, and the robots were programmed in Python.",
+        imageUrl: "/images/banner/banner_lego.png",
+        link: "/projects/lego",
+    },
+    {
+        title: "Lego Semester Project",
+        description: "The final project for the first semester at NTNU.",
+        imageUrl: "/images/banner/banner_lego.png",
+        link: "/projects/semester-lego",
+    },
+];
 
 export default function Index() {
     return (
