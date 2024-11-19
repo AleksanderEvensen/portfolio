@@ -21,29 +21,36 @@ const projects: Project[] = [
         title: "Change Fuzzyfinder Directory (CFD)",
         description:
             "A cli application written in rust for navigating the filsystem with a fuzzyfinder.",
-        imageUrl: "/images/placeholder.svg",
+        imageUrl: "/images/banner/banner_cfd.svg",
         link: "https://github.com/AleksanderEvensen/cfd",
     },
     {
         title: "Rusty JVM",
         description:
             "A simple Java Virtual Machine written in Rust. Made for educational purposes, and as a learning process. The JVM is able to run a simple Hello World program, but thats about it.",
-        imageUrl: "/images/placeholder.svg",
+        imageUrl: "/images/banner/banner_rustyjvm.svg",
         link: "https://github.com/AleksanderEvensen/Rusty-JVM",
     },
     {
         title: "Native RPC (nRPC)",
         description:
             "A RPC library made as an wrapper around Cfx.re event listeners, for FiveM and RedM scripts. The first and so far only npm package that i have published.",
-        imageUrl: "/images/placeholder.svg",
+        imageUrl: "/images/banner/banner_nrpc.svg",
         link: "https://github.com/AleksanderEvensen/nRPC",
     },
     {
         title: "Portfolio",
         description:
             "The website you are currently on. Made with Remix.run, TailwindCSS and hosted on Vercel.",
-        imageUrl: "/images/placeholder.svg",
+        imageUrl: "/images/banner/banner_portfolio.svg",
         link: "https://github.com/AleksanderEvensen/portfolio",
+    },
+    {
+        title: "RedM Norge",
+        description:
+            "A RedM server for the Cfx.re platform. The server is a roleplay server for norwegian players. Check out the website for more information.",
+        imageUrl: "/images/banner/banner_redmno.png",
+        link: "https://redmnorge.no/",
     },
 ];
 
