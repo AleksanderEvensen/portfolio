@@ -62,9 +62,10 @@ const schoolProjects: Project[] = [
         link: "/projects/lego",
     },
     {
-        title: "Lego Semester Project",
-        description: "The final project for the first semester at NTNU.",
-        imageUrl: "/images/banner/banner_lego.png",
+        title: "EV3 Lego Alarm Clock",
+        description:
+            "The final project for the first semester at NTNU. For the final project we made an alarm clock with the lego mindstorm EV3 Kit. The alarm clock is programmed to drive away from the user when the alarm goes off, and the user has to catch the robot to turn off the alarm.",
+        imageUrl: "/images/banner/banner_lego2.png",
         link: "/projects/semester-lego",
     },
 ];
