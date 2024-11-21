@@ -55,7 +55,7 @@ const projects: Project[] = [
 ];
 const schoolProjects: Project[] = [
     {
-        title: "Lego Mindstorm EV3 Robots",
+        title: "Small EV3 Lego Projects",
         description:
             "The first year at NTNU we made Lego robots with the Lego Mindstorm EV3 kit. The project was a collaboration between me and 4 other students, and the robots were programmed in Python.",
         imageUrl: "/images/banner/banner_lego.png",
@@ -67,6 +67,13 @@ const schoolProjects: Project[] = [
             "The final project for the first semester at NTNU. For the final project we made an alarm clock with the lego mindstorm EV3 Kit. The alarm clock is programmed to drive away from the user when the alarm goes off, and the user has to catch the robot to turn off the alarm.",
         imageUrl: "/images/banner/banner_lego2.png",
         link: "/projects/semester-lego",
+    },
+    {
+        title: "Projects in Programming 1 (IDATT1003)",
+        description:
+            "Programming 1 (IDATT1003) is meant to be a introduction to programming, and objetc oriented programming. The course is taught in Java, and the projects are meant to develop the students programming, planning and documentation skills.",
+        imageUrl: "/images/banner/banner_prog1.svg",
+        link: "/projects/prog1",
     },
 ];
 
