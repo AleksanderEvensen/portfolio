@@ -63,16 +63,18 @@ function App() {
 					{/* Main Content */}
 					<div className="flex-1 w-full max-w-4xl">
 						{/* Name Header */}
-						<h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-wide mb-8 lg:mb-16 text-center lg:text-left">
+						<h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center lg:text-left">
 							Aleksander Evensen
 						</h1>
+						<h3 className="text-red-500 font-space-mono mb-4 text-center text-xl sm:text-2xl lg:text-3xl lg:text-left lg:mb-8">
+							Software Developer
+						</h3>
 
 						{/* Bio Content */}
 						<div className="space-y-6 lg:space-y-8 text-base sm:text-lg leading-relaxed px-2 sm:px-0">
 							<section className="mb-8">
-								<h2 className="text-2xl font-bold mb-4">
-									I am a self-taught programmer from Norway working on all sorts
-									of projects
+								<h2 className="text-2xl font-semibold mb-4">
+									I am a self-taught programmer from Norway
 								</h2>
 								<div className="space-y-4 text-lg">
 									<p>
