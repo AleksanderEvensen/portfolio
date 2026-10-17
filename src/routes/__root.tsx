@@ -1,17 +1,15 @@
-import type { QueryClient } from "@tanstack/react-query";
+import { TanStackDevtools } from "@tanstack/react-devtools";
 import {
 	HeadContent,
 	Outlet,
 	Scripts,
-	createRootRouteWithContext,
+	createRootRoute,
 } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
-import TanStackQueryLayout from "../integrations/tanstack-query/layout.tsx";
+import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+
 import appCss from "../styles.css?url";
 
-export const Route = createRootRouteWithContext<{
-	queryClient: QueryClient;
-}>()({
+export const Route = createRootRoute({
 	head: () => ({
 		meta: [
 			{
@@ -47,7 +45,7 @@ export const Route = createRootRouteWithContext<{
 			{
 				rel: "preconnect",
 				href: "https://fonts.gstatic.com",
-				crossorigin: true,
+				crossOrigin: "anonymous",
 			},
 			{
 				rel: "stylesheet",
@@ -63,8 +61,14 @@ function RootComponent() {
 	return (
 		<RootDocument>
 			<Outlet />
-			<TanStackRouterDevtools />
-			<TanStackQueryLayout />
+			<TanStackDevtools
+				plugins={[
+					{
+						name: "TanStack Router",
+						render: <TanStackRouterDevtoolsPanel />,
+					},
+				]}
+			/>
 		</RootDocument>
 	);
 }

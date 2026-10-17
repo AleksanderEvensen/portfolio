@@ -11,14 +11,17 @@
 
 	"prettier.enable": false,
 	"eslint.enable": false,
-	"biome.enabled": true,
 
+	"editor.defaultFormatter": "oxc.oxc-vscode",
 	"[json][jsonc][css][typescriptreact][typescript][javascriptreact][javascript]": {
-		"editor.defaultFormatter": "biomejs.biome"
+		"editor.defaultFormatter": "oxc.oxc-vscode"
 	},
+	"oxc.disableNestedConfig": true,
+	"oxc.fmt.disableNestedConfig": true,
+	"editor.formatOnSave": true,
+	"editor.formatOnSaveMode": "file",
 
 	"editor.codeActionsOnSave": {
-		"source.organizeImports.biome": "explicit",
-		"source.fixAll.biome": "explicit"
+		"source.fixAll.oxc": "explicit"
 	}
 }

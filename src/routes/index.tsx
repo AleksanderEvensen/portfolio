@@ -1,7 +1,9 @@
+import { createFileRoute } from "@tanstack/react-router";
+
 import BackgroundBlob from "@/components/background-blob";
 import { SiGithub, SiLinkedIn } from "@/components/icons/SimpleIcons";
-import { Button } from "@/components/ui/button";
-import { createFileRoute } from "@tanstack/react-router";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({
 	component: App,
@@ -27,36 +29,44 @@ function App() {
 
 						{/* Navigation */}
 						<nav className="flex flex-row lg:flex-col gap-4 lg:space-y-4 lg:gap-0 w-full justify-center lg:justify-start">
-							<Button asChild variant="outline">
-								<a
-									href="https://github.com/AleksanderEvensen"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="flex items-center text-muted-foreground hover:text-foreground gap-2 font-medium text-sm sm:text-base"
-								>
-									<SiGithub
-										className="w-5 h-5"
-										stroke="none"
-										fill="currentColor"
-									/>
-									<span className="hidden sm:inline">GitHub</span>
-								</a>
-							</Button>
-							<Button asChild variant="outline">
-								<a
-									href="https://www.linkedin.com/in/aleksander-evensen/"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="flex items-center gap-2 text-muted-foreground hover:text-foreground text-sm sm:text-base"
-								>
-									<SiLinkedIn
-										className="w-5 h-5"
-										stroke="none"
-										fill="currentColor"
-									/>
-									<span className="hidden sm:inline">LinkedIn</span>
-								</a>
-							</Button>
+							<a
+								href="https://github.com/AleksanderEvensen"
+								target="_blank"
+								rel="noopener noreferrer"
+								className={cn(
+									buttonVariants({
+										variant: "outline",
+										className:
+											"flex items-center text-muted-foreground hover:text-foreground gap-2 font-medium text-sm sm:text-base",
+									}),
+								)}
+							>
+								<SiGithub
+									className="w-5 h-5"
+									stroke="none"
+									fill="currentColor"
+								/>
+								<span className="hidden sm:inline">GitHub</span>
+							</a>
+							<a
+								href="https://www.linkedin.com/in/aleksander-evensen/"
+								target="_blank"
+								rel="noopener noreferrer"
+								className={cn(
+									buttonVariants({
+										variant: "outline",
+										className:
+											"flex items-center gap-2 text-muted-foreground hover:text-foreground text-sm sm:text-base",
+									}),
+								)}
+							>
+								<SiLinkedIn
+									className="w-5 h-5"
+									stroke="none"
+									fill="currentColor"
+								/>
+								<span className="hidden sm:inline">LinkedIn</span>
+							</a>
 						</nav>
 					</div>
 
