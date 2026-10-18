@@ -4,93 +4,92 @@
 
 @custom-variant dark (&:is(.dark *));
 
-body {
-	@apply m-0;
-	font-family:
-		-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-		"Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-code {
-	font-family:
-		source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-}
-
 @theme {
-	--font-space-mono: "Space Mono", monospace;
+	--font-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
+	--font-mono: "Space Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+	/* Type scale by role. Display sizes are fluid; everything else is fixed rem. */
+	/* "Aleksander" is 8.82em wide, so 11% of the container always fits it. */
+	--text-hero: 11cqi;
+	--text-hero--line-height: 0.92;
+	--text-hero--letter-spacing: -0.02em;
+	--text-callout: clamp(2rem, 0.5rem + 6.5vw, 6.5rem);
+	--text-callout--line-height: 0.95;
+	--text-callout--letter-spacing: -0.02em;
+	--text-title: clamp(2rem, 1.2rem + 3.2vw, 3.75rem);
+	--text-title--line-height: 1.1;
+	--text-title--letter-spacing: -0.02em;
+	--text-feature: clamp(1.75rem, 1.1rem + 2.2vw, 3rem);
+	--text-feature--line-height: 1.1;
+	--text-feature--letter-spacing: -0.02em;
+	--text-lede: clamp(1.125rem, 1rem + 0.4vw, 1.3125rem);
+	--text-lede--line-height: 1.5;
+	--text-label: 0.8125rem;
+	--text-label--line-height: 1.4;
+	--text-label--letter-spacing: 0.05em;
+
+	--shadow-border: 0 0 0 1px oklch(1 0 0 / 0.08);
+	--shadow-border-hover: 0 0 0 1px oklch(1 0 0 / 0.14);
 }
 
+/*
+ * The site is dark only, so there is one palette. Primitives are ramps named
+ * by hue and Radix-style step; components never use them directly.
+ * Contrast, measured with WCAG 2 on the rendered pairs:
+ *   foreground on background        17.7:1
+ *   muted-foreground on card         8.6:1
+ *   primary-text on card             9.5:1
+ *   primary-foreground on primary    7.4:1 (9.0:1 on primary-hover)
+ *   ring on background / card        7.4:1 / 7.0:1
+ *   border-strong on background      3.6:1
+ *   muted-foreground on the 95% nav  5.0:1 with white text scrolled under it
+ */
 :root {
-	--background: oklch(1 0 0);
-	--foreground: oklch(0.141 0.005 285.823);
-	--card: oklch(1 0 0);
-	--card-foreground: oklch(0.141 0.005 285.823);
-	--popover: oklch(1 0 0);
-	--popover-foreground: oklch(0.141 0.005 285.823);
-	--primary: oklch(0.21 0.006 285.885);
-	--primary-foreground: oklch(0.985 0 0);
-	--secondary: oklch(0.967 0.001 286.375);
-	--secondary-foreground: oklch(0.21 0.006 285.885);
-	--muted: oklch(0.967 0.001 286.375);
-	--muted-foreground: oklch(0.552 0.016 285.938);
-	--accent: oklch(0.967 0.001 286.375);
-	--accent-foreground: oklch(0.21 0.006 285.885);
-	--destructive: oklch(0.577 0.245 27.325);
-	--destructive-foreground: oklch(0.577 0.245 27.325);
-	--border: oklch(0.92 0.004 286.32);
-	--input: oklch(0.92 0.004 286.32);
-	--ring: oklch(0.871 0.006 286.286);
-	--chart-1: oklch(0.646 0.222 41.116);
-	--chart-2: oklch(0.6 0.118 184.704);
-	--chart-3: oklch(0.398 0.07 227.392);
-	--chart-4: oklch(0.828 0.189 84.429);
-	--chart-5: oklch(0.769 0.188 70.08);
-	--radius: 0.625rem;
-	--sidebar: oklch(0.985 0 0);
-	--sidebar-foreground: oklch(0.141 0.005 285.823);
-	--sidebar-primary: oklch(0.21 0.006 285.885);
-	--sidebar-primary-foreground: oklch(0.985 0 0);
-	--sidebar-accent: oklch(0.967 0.001 286.375);
-	--sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-	--sidebar-border: oklch(0.92 0.004 286.32);
-	--sidebar-ring: oklch(0.871 0.006 286.286);
-}
+	color-scheme: dark;
 
-.dark {
-	--background: oklch(0.141 0.005 285.823);
-	--foreground: oklch(0.985 0 0);
-	--card: oklch(0.141 0.005 285.823);
-	--card-foreground: oklch(0.985 0 0);
-	--popover: oklch(0.141 0.005 285.823);
-	--popover-foreground: oklch(0.985 0 0);
-	--primary: oklch(0.985 0 0);
-	--primary-foreground: oklch(0.21 0.006 285.885);
-	--secondary: oklch(0.274 0.006 286.033);
-	--secondary-foreground: oklch(0.985 0 0);
-	--muted: oklch(0.274 0.006 286.033);
-	--muted-foreground: oklch(0.705 0.015 286.067);
-	--accent: oklch(0.274 0.006 286.033);
-	--accent-foreground: oklch(0.985 0 0);
+	--neutral-1: oklch(0.155 0.01 265);
+	--neutral-2: oklch(0.19 0.012 265);
+	--neutral-3: oklch(0.225 0.014 265);
+	--neutral-4: oklch(0.26 0.016 265);
+	--neutral-6: oklch(0.3 0.018 265);
+	--neutral-7: oklch(0.37 0.019 265);
+	--neutral-8: oklch(0.52 0.02 265);
+	--neutral-11: oklch(0.76 0.02 265);
+	--neutral-12: oklch(0.965 0.006 265);
+
+	--orange-3: oklch(0.24 0.045 42);
+	--orange-6: oklch(0.38 0.1 42);
+	--orange-9: oklch(0.72 0.175 42);
+	--orange-10: oklch(0.77 0.135 42);
+	--orange-11: oklch(0.8 0.11 42);
+
+	--background: var(--neutral-1);
+	--foreground: var(--neutral-12);
+	--card: var(--neutral-2);
+	--card-foreground: var(--neutral-12);
+	--card-hover: var(--neutral-3);
+	--popover: var(--neutral-3);
+	--popover-foreground: var(--neutral-12);
+	--primary: var(--orange-9);
+	--primary-hover: var(--orange-10);
+	--primary-foreground: var(--neutral-1);
+	--primary-subtle: var(--orange-3);
+	--primary-border: var(--orange-6);
+	--primary-text: var(--orange-11);
+	--secondary: var(--neutral-3);
+	--secondary-foreground: var(--neutral-12);
+	--muted: var(--neutral-2);
+	--muted-foreground: var(--neutral-11);
+	--accent: var(--neutral-3);
+	--accent-foreground: var(--neutral-12);
 	--destructive: oklch(0.396 0.141 25.723);
 	--destructive-foreground: oklch(0.637 0.237 25.331);
-	--border: oklch(0.274 0.006 286.033);
-	--input: oklch(0.274 0.006 286.033);
-	--ring: oklch(0.442 0.017 285.786);
-	--chart-1: oklch(0.488 0.243 264.376);
-	--chart-2: oklch(0.696 0.17 162.48);
-	--chart-3: oklch(0.769 0.188 70.08);
-	--chart-4: oklch(0.627 0.265 303.9);
-	--chart-5: oklch(0.645 0.246 16.439);
-	--sidebar: oklch(0.21 0.006 285.885);
-	--sidebar-foreground: oklch(0.985 0 0);
-	--sidebar-primary: oklch(0.488 0.243 264.376);
-	--sidebar-primary-foreground: oklch(0.985 0 0);
-	--sidebar-accent: oklch(0.274 0.006 286.033);
-	--sidebar-accent-foreground: oklch(0.985 0 0);
-	--sidebar-border: oklch(0.274 0.006 286.033);
-	--sidebar-ring: oklch(0.442 0.017 285.786);
+	--border: var(--neutral-6);
+	--border-strong: var(--neutral-8);
+	--input: var(--neutral-8);
+	--ring: var(--orange-9);
+	--grid-dot: var(--neutral-7);
+	--radius: 0.625rem;
 }
 
 @theme inline {
@@ -98,10 +97,15 @@ code {
 	--color-foreground: var(--foreground);
 	--color-card: var(--card);
 	--color-card-foreground: var(--card-foreground);
+	--color-card-hover: var(--card-hover);
 	--color-popover: var(--popover);
 	--color-popover-foreground: var(--popover-foreground);
 	--color-primary: var(--primary);
+	--color-primary-hover: var(--primary-hover);
 	--color-primary-foreground: var(--primary-foreground);
+	--color-primary-subtle: var(--primary-subtle);
+	--color-primary-border: var(--primary-border);
+	--color-primary-text: var(--primary-text);
 	--color-secondary: var(--secondary);
 	--color-secondary-foreground: var(--secondary-foreground);
 	--color-muted: var(--muted);
@@ -111,32 +115,142 @@ code {
 	--color-destructive: var(--destructive);
 	--color-destructive-foreground: var(--destructive-foreground);
 	--color-border: var(--border);
+	--color-border-strong: var(--border-strong);
 	--color-input: var(--input);
 	--color-ring: var(--ring);
-	--color-chart-1: var(--chart-1);
-	--color-chart-2: var(--chart-2);
-	--color-chart-3: var(--chart-3);
-	--color-chart-4: var(--chart-4);
-	--color-chart-5: var(--chart-5);
+	--color-grid-dot: var(--grid-dot);
 	--radius-sm: calc(var(--radius) - 4px);
 	--radius-md: calc(var(--radius) - 2px);
 	--radius-lg: var(--radius);
 	--radius-xl: calc(var(--radius) + 4px);
-	--color-sidebar: var(--sidebar);
-	--color-sidebar-foreground: var(--sidebar-foreground);
-	--color-sidebar-primary: var(--sidebar-primary);
-	--color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-	--color-sidebar-accent: var(--sidebar-accent);
-	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-	--color-sidebar-border: var(--sidebar-border);
-	--color-sidebar-ring: var(--sidebar-ring);
 }
 
 @layer base {
 	* {
-		@apply border-border outline-ring/50;
+		@apply border-border;
 	}
+
+	html {
+		/* Clears the sticky header when jumping to a section or tabbing. */
+		scroll-padding-block-start: 5.5rem;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		html {
+			scroll-behavior: smooth;
+		}
+	}
+
 	body {
-		@apply bg-background text-foreground;
+		@apply m-0 bg-background font-sans text-foreground antialiased;
+		line-height: 1.6;
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--ring);
+		outline-offset: 2px;
+	}
+
+	::selection {
+		background-color: var(--primary);
+		color: var(--primary-foreground);
+	}
+
+	a,
+	button {
+		-webkit-tap-highlight-color: transparent;
+	}
+}
+
+/* Engineering-paper dot grid, faded out with a mask by each user. */
+@utility dot-grid {
+	background-image: radial-gradient(
+		circle at 1px 1px,
+		var(--grid-dot) 1px,
+		transparent 0
+	);
+	background-size: 24px 24px;
+}
+
+@utility kicker {
+	font-family: var(--font-mono);
+	font-size: var(--text-label);
+	line-height: var(--text-label--line-height);
+	letter-spacing: var(--text-label--letter-spacing);
+	text-transform: uppercase;
+}
+
+@utility text-link {
+	color: var(--primary-text);
+	text-decoration-line: underline;
+	text-decoration-color: var(--primary-border);
+	text-decoration-thickness: from-font;
+	text-underline-offset: 0.25em;
+	transition: text-decoration-color 150ms ease-out;
+
+	@media (hover: hover) {
+		&:hover {
+			text-decoration-color: currentColor;
+		}
+	}
+}
+
+/*
+ * A card whose title link covers the whole card. Other links inside it need
+ * `relative z-10` to stay clickable. The focus ring moves to the card edge.
+ */
+@utility card-link {
+	&::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+	}
+
+	&:focus-visible {
+		outline: 2px solid transparent;
+	}
+
+	&:focus-visible::after {
+		outline: 2px solid var(--ring);
+		outline-offset: 2px;
+		border-radius: var(--card-radius, 1rem);
+	}
+}
+
+/*
+ * One-shot staged entrance. Set --enter-step on each chunk to stagger it
+ * 100ms after the previous one. Reduced motion keeps only the fade.
+ */
+@utility enter {
+	animation: enter-fade 300ms ease-out both;
+	animation-delay: calc(var(--enter-step, 0) * 100ms);
+
+	@media (prefers-reduced-motion: no-preference) {
+		animation-name: enter-rise;
+	}
+}
+
+@keyframes enter-fade {
+	from {
+		opacity: 0;
+	}
+}
+
+@keyframes enter-rise {
+	from {
+		opacity: 0;
+		transform: translateY(12px);
+		filter: blur(4px);
+	}
+}
+
+@keyframes stop-pulse {
+	from {
+		opacity: 0.7;
+		scale: 0.6;
+	}
+	to {
+		opacity: 0;
+		scale: 1.6;
 	}
 }

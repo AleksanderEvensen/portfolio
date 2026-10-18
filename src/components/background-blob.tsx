@@ -1,100 +1,96 @@
-import { ClientOnly } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useId, useRef } from "react";
 import { createNoise2D } from "simplex-noise";
 
 import { spline } from "@/lib/splinejs";
 
-const noise = createNoise2D();
+const NUM_POINTS = 12;
+const RADIUS = 75;
+const WOBBLE = 20;
+// The blob morphs after load and then settles. It stays under five seconds so
+// the motion never needs a pause control.
+const SETTLE_MS = 4500;
+const SPEED = 0.0004;
 
-function createPoints() {
-	const points = [];
-	// how many points do we need
-	const numPoints = 12;
-	// used to equally space each point around the circle
-	const angleStep = (Math.PI * 2) / numPoints;
-	// the radius of the circle
-	const rad = 75;
-
-	for (let i = 1; i <= numPoints; i++) {
-		// x & y coordinates of the current point
-		const theta = i * angleStep;
-
-		const x = 100 + Math.cos(theta) * rad;
-		const y = 100 + Math.sin(theta) * rad;
-
-		// store the point's position
-		points.push({
-			x: x,
-			y: y,
-			// we need to keep a reference to the point's original point for when we modulate the values later
-			originX: x,
-			originY: y,
-			// more on this in a moment!
-			noiseOffsetX: Math.random() * 1000,
-			noiseOffsetY: Math.random() * 1000,
-		});
-	}
-
-	return points;
+// A seeded generator gives the server and the browser the same shape, so the
+// blob is prerendered with the page instead of popping in after hydration.
+function mulberry32(seed: number) {
+	return () => {
+		seed = (seed + 0x6d2b79f5) | 0;
+		let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+		t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+		return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+	};
 }
 
-function map(
-	n: number,
-	start1: number,
-	end1: number,
-	start2: number,
-	end2: number,
-): number {
-	return ((n - start1) / (end1 - start1)) * (end2 - start2) + start2;
+function createBlob(seed: number) {
+	const random = mulberry32(seed);
+	const noise = createNoise2D(random);
+	const points = Array.from({ length: NUM_POINTS }, (_, i) => {
+		const theta = ((i + 1) * Math.PI * 2) / NUM_POINTS;
+		return {
+			// Rounded so engines with different trig precision agree.
+			x: Math.round((100 + Math.cos(theta) * RADIUS) * 100) / 100,
+			y: Math.round((100 + Math.sin(theta) * RADIUS) * 100) / 100,
+			offsetX: random() * 1000,
+			offsetY: random() * 1000,
+		};
+	});
+
+	return (time: number) =>
+		spline(
+			points.map((p): [number, number] => [
+				p.x + noise(p.offsetX + time, p.offsetX + time) * WOBBLE,
+				p.y + noise(p.offsetY + time, p.offsetY + time) * WOBBLE,
+			]),
+			1,
+			true,
+		);
 }
+
+const blobPath = createBlob(11);
 
 export default function BackgroundBlob({ className }: { className?: string }) {
-	const [points, setPoints] = useState<[number, number][]>([]);
-	const [hue, setHue] = useState(0);
+	const gradientId = `blob-${useId().replace(/[^\w-]/g, "")}`;
+	const pathRef = useRef<SVGPathElement>(null);
+
 	useEffect(() => {
-		const _points = createPoints();
+		if (!window.matchMedia("(prefers-reduced-motion: no-preference)").matches)
+			return;
 
-		for (let i = 0; i < _points.length; i++) {
-			const point = _points[i];
+		let frame = 0;
+		let time = 0;
+		const start = performance.now();
+		let last = start;
 
-			const nX = noise(point.noiseOffsetX, point.noiseOffsetX);
-			const nY = noise(point.noiseOffsetY, point.noiseOffsetY);
+		const tick = (now: number) => {
+			const progress = Math.min(1, (now - start) / SETTLE_MS);
+			time += SPEED * (1 - progress) ** 2 * (now - last);
+			last = now;
+			pathRef.current?.setAttribute("d", blobPath(time));
+			if (progress < 1) frame = requestAnimationFrame(tick);
+		};
 
-			const x = map(nX, -1, 1, point.originX - 20, point.originX + 20);
-			const y = map(nY, -1, 1, point.originY - 20, point.originY + 20);
-
-			point.x = x;
-			point.y = y;
-			point.noiseOffsetX += 0.001;
-			point.noiseOffsetY += 0.001;
-		}
-
-		setPoints(_points.map((p) => [p.x, p.y]));
-		setHue(Math.floor(Math.random() * 360));
+		frame = requestAnimationFrame(tick);
+		return () => cancelAnimationFrame(frame);
 	}, []);
 
 	return (
-		<ClientOnly>
-			<svg
-				viewBox="0 0 200 200"
-				style={{
-					// @ts-expect-error No literal string type "why this error idk"
-					"--start-color": `hsl(${hue % 360}, 100%, 75%)`,
-					"--stop-color": `hsl(${(hue + 60) % 360}, 100%, 75%)`,
-					filter: "blur(42px)",
-				}}
-				className={className}
-			>
-				<linearGradient id="gradient" gradientTransform="rotate(90)">
-					<stop id="gradientStop1" offset="0%" stopColor="var(--start-color)" />
-					<stop
-						id="gradientStop2 "
-						offset="100%"
-						stopColor="var(--stop-color)"
-					/>
-				</linearGradient>
-				<path d={spline(points, 1, true)} fill="url('#gradient')"></path>
-			</svg>
-		</ClientOnly>
+		<svg
+			viewBox="0 0 200 200"
+			aria-hidden="true"
+			className={className}
+			style={{ filter: "blur(42px)" }}
+		>
+			<linearGradient id={gradientId} gradientTransform="rotate(90)">
+				<stop offset="0%" style={{ stopColor: "var(--primary)" }} />
+				<stop offset="100%" style={{ stopColor: "var(--primary-border)" }} />
+			</linearGradient>
+			<path
+				ref={pathRef}
+				d={blobPath(0)}
+				fill={`url(#${gradientId})`}
+				suppressHydrationWarning
+			/>
+		</svg>
 	);
 }

@@ -7,6 +7,15 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
+import { LINKS } from "@/data/profile";
+import { m } from "@/paraglide/messages.js";
+import {
+	getLocale,
+	getTextDirection,
+	locales,
+	localizeHref,
+} from "@/paraglide/runtime.js";
+
 import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({
@@ -20,7 +29,15 @@ export const Route = createRootRoute({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "Aleksander H.S. Evensen | Portfolio",
+				title: m.meta_title(),
+			},
+			{
+				name: "description",
+				content: m.meta_description(),
+			},
+			{
+				name: "theme-color",
+				content: "#0a0c11",
 			},
 		],
 		links: [
@@ -49,7 +66,22 @@ export const Route = createRootRoute({
 			},
 			{
 				rel: "stylesheet",
-				href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap",
+				href: "https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=Space+Mono:wght@400;700&display=swap",
+			},
+			// Tell search engines about every language version of the page.
+			{
+				rel: "canonical",
+				href: `${LINKS.site}${localizeHref("/")}`,
+			},
+			...locales.map((locale) => ({
+				rel: "alternate",
+				hrefLang: locale,
+				href: `${LINKS.site}${localizeHref("/", { locale })}`,
+			})),
+			{
+				rel: "alternate",
+				hrefLang: "x-default",
+				href: `${LINKS.site}/`,
 			},
 		],
 	}),
@@ -75,7 +107,7 @@ function RootComponent() {
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en" className="dark">
+		<html lang={getLocale()} dir={getTextDirection()} className="dark">
 			<head>
 				<HeadContent />
 			</head>
